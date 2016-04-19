@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/PokeMaze.unity
+- path: Assets/Scenes/PokeMaze.unity
   isLoaded: 1
   isActive: 1
