@@ -19,6 +19,7 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
         this._transform = gameObject.GetComponent<Transform>();
+        this.gameController = GameObject.FindWithTag("GameController").GetComponent("GameController") as GameController;
 
     } // end Start
 
@@ -33,14 +34,15 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            gameController.BulletValue--;
             Instantiate(this.muzzleFlash, flashPoint.position, Quaternion.identity);
             RaycastHit hit; // stores information from the Ray;
             if (Physics.Raycast(this._transform.position, this._transform.forward, out hit, 50f))
             {
-                if (hit.transform.gameObject.CompareTag("Target"))
+                if (hit.transform.gameObject.CompareTag("Target")) //when target is hit
                 {
                     Instantiate(this.explosion, hit.point, Quaternion.identity);
-                    Destroy(hit.transform.gameObject);
+                    Destroy(hit.transform.gameObject); //destroying game object
                     this.gameController.ScoreValue += 100;
                 }
                 else
